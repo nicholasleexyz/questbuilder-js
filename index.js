@@ -1,14 +1,9 @@
-const questtypes = ["find", "rescue", "defeat", "collect"]
-const enemytypes = ["goblin", "troll", "skeleton", "zombie", "ogre", "demon", "dragon", "slime", "golem", "bug"]
-const passivetypes = ["goat", "dog", "frog", "merchant", "noble"]
-const items = ["gold coin", "apple", "shovel", "sword", "ring", "hat!"]
-let running = true
-
 class IDGenerator {
     currentID = 0
     constructor() { this.currentID = 0; }
     generateID() { return this.currentID++; }
 }
+
 
 class Quest {
     constructor(id, questtype, task, reward) {
@@ -30,8 +25,8 @@ class QuestLog {
     {
         const id = this.idgenerator.generateID();
         const questtype = getrandomelem(questtypes);
-        const reward = `${Math.floor(Math.random() * 10)} ${getrandomelem(items)}(s);`
-        const task = "EMPTY";
+        const reward = `${Math.ceil(Math.random() * 10)} ${getrandomelem(items)}(s);`
+        let task = "EMPTY";
 
         if (questtype == "find") {
             let passiveoritem = Math.round(Math.random()) == 1 ? getrandomelem(passivetypes) : getrandomelem(items);
@@ -47,7 +42,7 @@ class QuestLog {
             task = `Defeat a ${enemy}!`
         }
         else if (questtype == "collect") {
-            let num = Math.floor(Math.random() * 10);
+            let num = Math.ceil(Math.random() * 10);
             let item = getrandomelem(items);
             task = `Collect ${num} ${item}(s).`
         }
@@ -64,6 +59,7 @@ class QuestLog {
             const tasktext = `TASK: ${quest.task}`;
             const rewardtext = `REWARD: ${quest.reward}`;
             text = text + [line, idtext, tasktext, rewardtext].join("\n");
+            text = text + "\n";
         }
         this.questtext = text;
     }
@@ -78,9 +74,26 @@ class QuestLog {
     }
 }
 
+function helpText() {
+    let line = "--------\n";
+    let a = "a or add - add in a new quest.\n";
+    let r = "r or remove - remove quest by id.\n";
+    let q = "q or quit - exit program.\n";
+    let total = [line, a, r, q].join("");
+
+    return total
+}
 let getrandomelem = arr => arr[Math.floor(arr.length * Math.random())]
+
+const questtypes = ["find", "rescue", "defeat", "collect"]
+const enemytypes = ["goblin", "troll", "skeleton", "zombie", "ogre", "demon", "dragon", "slime", "golem", "bug", "goat"]
+const passivetypes = ["cat", "dog", "frog", "merchant", "noble", "monkey"]
+const items = ["gold coin", "apple", "shovel", "sword", "ring", "hat!"]
+
 let idgenerator = new IDGenerator();
 let questlog = new QuestLog(idgenerator);
+let running = true
+
 while (running) {
     let input = prompt(questlog.questtext + helpText());
     if (input == "q" || input == "quit") {
@@ -94,12 +107,4 @@ while (running) {
     }
 }
 
-function helpText() {
-    let line = "--------\n";
-    let a = "a or add - add in a new quest.\n";
-    let r = "r or remove - remove quest by id.\n";
-    let q = "q or quit - exit program.\n";
-    let total = [line, a, r, q].join("");
-
-    return total
-}
+console.log("asdf");
