@@ -77,14 +77,32 @@ class QuestLog {
         this.quests = total;
         this.printQuests();
     }
+
+    viewQuestByID(id) {
+        let text = ""
+        for (let i = 0; i < this.quests.length; i++) {
+            const quest = this.quests[i];
+            if(quest.id == id) {
+                const line = "*--------*";
+                const idtext = `ID: ${quest.id}`;
+                const tasktext = `QUEST: ${quest.task}`;
+                const rewardtext = `REWARD: ${quest.reward}`;
+                text = text + [line, idtext, tasktext, rewardtext, line].join("\n");
+                text = text + "\n\n";
+            }
+        }
+        prompt(text + "Very detailed and very cool quest decription goes here. (press anything to go back)");
+        this.printQuests();
+    }
 }
 
 function helpText() {
     let line = "--------\n";
     let a = "a or add - add in a new quest.\n";
-    let r = "r or remove - remove quest by id.\n";
+    let r = "r or remove - remove a quest by id.\n";
+    let v = "v or view - view a quest by id.\n";
     let q = "q or quit - exit program.\n";
-    let total = [line, a, r, q].join("");
+    let total = [line, a, r, v, q].join("");
 
     return total
 }
@@ -110,5 +128,9 @@ while (running) {
     else if (input == "r" || input == "remove") {
         input = prompt(questlog.questtext + "\nWhich one? ID: ");
         questlog.removeQuestByID(input);
+    }
+    else if (input == "v" || input == "view") {
+        input = prompt(questlog.questtext + "\nWhich one? ID: ");
+        questlog.viewQuestByID(input);
     }
 }
