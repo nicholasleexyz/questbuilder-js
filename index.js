@@ -4,7 +4,6 @@ class IDGenerator {
     generateID() { return this.currentID++; }
 }
 
-
 class Quest {
     constructor(id, questtype, task, reward) {
         this.id = id;
@@ -70,7 +69,14 @@ class QuestLog {
     }
 
     removeQuestByID(id) {
-
+        let total = []
+        for (let i = 0; i < this.quests.length; i++) {
+            const quest = this.quests[i];
+            if(quest.id != id) 
+                total.push(quest);
+        }
+        this.quests = total;
+        this.printQuests();
     }
 }
 
@@ -103,8 +109,7 @@ while (running) {
         questlog.addQuest();
     }
     else if (input == "r" || input == "remove") {
-
+        input = prompt(questlog.questtext + "\nWhich one? ID: ");
+        questlog.removeQuestByID(input);
     }
 }
-
-console.log("asdf");
