@@ -91,7 +91,7 @@ class QuestLog {
                 text = text + "\n\n";
             }
         }
-        prompt(text + "Very detailed and very cool quest decription goes here. (press enter to go back)");
+        prompt(text + "Very detailed and very cool quest decription goes here.\n(press enter to go back)");
         this.printQuests();
     }
 }
