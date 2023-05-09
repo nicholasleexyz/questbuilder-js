@@ -1,6 +1,5 @@
 class IDGenerator {
-    currentID = 0
-    constructor() { this.currentID = 0; }
+    constructor() { this.currentID = 1; }
     generateID() { return this.currentID++; }
 }
 
