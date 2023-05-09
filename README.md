@@ -1,5 +1,5 @@
 # Quest Builder JS
-Randomly generates quests. Originally written lua: https://github.com/nicholasleexyz/questbuilder.
+Randomly generates quests. Originally written in lua: https://github.com/nicholasleexyz/questbuilder.
 
 Example:
 
