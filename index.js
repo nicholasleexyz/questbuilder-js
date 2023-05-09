@@ -54,8 +54,8 @@ class QuestLog {
         for (let i = 0; i < this.quests.length; i++) {
             const quest = this.quests[i];
             const line = "--------"
-            const idtext = `QUEST ID: ${quest.id}`;
-            const tasktext = `TASK: ${quest.task}`;
+            const idtext = `ID: ${quest.id}`;
+            const tasktext = `QUEST: ${quest.task}`;
             const rewardtext = `REWARD: ${quest.reward}`;
             text = text + [line, idtext, tasktext, rewardtext].join("\n");
             text = text + "\n";
